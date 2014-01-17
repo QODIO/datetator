@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Datetator Plugin</title>
+	<link rel="stylesheet" href="fm.datetator.jquery.css"/>
+	<style>
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		#wrapper {
+			padding: 15px;
+		}
+		#inputDatetator1,
+		#inputDatetator2 {
+			width: 300px;
+			padding: 3px;
+			box-sizing: border-box;
+		}
+	</style>
+	<script src="jquery-2.0.3.min.js"></script>
+	<script src="fm.datetator.jquery.js"></script>
+	<script>
+		$(function () {
+			$('#activate_datetator1').click(function () {
+				if ($('#inputDatetator1').data('datetator') === undefined) {
+					$('#inputDatetator1').datetator({
+						useDimmer: true
+					});
+					$('#activate_datetator1').val('destroy datetator');
+				} else {
+					$('#inputDatetator1').datetator('destroy');
+					$('#activate_datetator1').val('activate datetator');
+				}
+			});
+			$('#activate_datetator1').trigger('click');
+
+			$('#activate_datetator2').click(function () {
+				if ($('#inputDatetator2').data('datetator') === undefined) {
+					$('#inputDatetator2').datetator();
+					$('#activate_datetator2').val('destroy datetator');
+				} else {
+					$('#inputDatetator2').datetator('destroy');
+					$('#activate_datetator2').val('activate datetator');
+				}
+			});
+			$('#activate_datetator2').trigger('click');
+			
+			$('#datetator_inputDatetator2').focus();
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<input id="inputDatetator1" name="inputDatetator1" value="">
+		<input value="activate datetator" id="activate_datetator1" type="button"><br>
+		<br>
+		<input id="inputDatetator2" name="inputDatetator2" value="2014-01-15">
+		<input value="activate datetator" id="activate_datetator2" type="button">
+	</div>
+
+</body>
+</html>

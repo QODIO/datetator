@@ -1,0 +1,124 @@
+/**
+ * Datetator jQuery Plugin
+ * A plugin to make input elements, date pickers
+ * version 1.0, Jan 15th, 2014
+ * by Ingi P. Jacobsen
+ */
+
+/* reset */
+.datetator * {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	text-decoration: none;
+}
+
+/* dimmer */
+#datetator_dimmer {
+	background-color: rgba(0,0,0,.1);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 100;
+}
+
+/* Main box */
+.datetator {
+	border: 1px solid #abadb3;
+	border-radius: 3px;
+	box-sizing: border-box;
+	display: inline-block;
+	text-decoration: none;
+	background: #fff url('calendar.png') no-repeat 99% 50%;
+	cursor: pointer;
+}
+
+.datetator_picker {
+	position: absolute;
+	width: 200px;
+	background-color: rgba(255,0,0,.2);
+	z-index: 101;
+	color: #333;
+}
+.datetator_holder.picker-visible {
+	position: relative;
+	z-index: 101;
+}
+.datetator_holder.picker-visible .datetator_picker {
+	display: block;
+}
+.datetator_holder.picker-hidden .datetator_picker {
+	display: none;
+}
+
+.datetator_button {
+	text-align: center;
+	background-color: #f6f6f6;
+	cursor: pointer;
+	padding: 3px;
+	box-sizing: border-box;
+}
+.datetator_button:hover {
+	background-color: #ddd;
+}
+
+.datetator_navigation {
+	background-color: #f6f6f6;
+}
+.datetator_previous {
+	width: 33%;
+	float: left;
+}
+.datetator_today {
+	width: 34%;
+	float: left;
+}
+.datetator_next {
+}
+.datetator_month {
+	background-color: #f6f6f6;
+	text-align: center;
+	padding: 3px;
+	font-weight: bold;
+}
+.datetator_calendar {
+	width: 100%;
+	background-color: #fff;
+	border-collapse: collapse;
+}
+.datetator_week_header {
+	background-color: #eee;
+	font-weight: normal;
+	text-align: center;
+}
+.datetator_day_header {
+	background-color: #eee;
+	font-weight: normal;
+	text-align: center;
+}
+.datetator_week {
+	background-color: #eee;
+	text-align: center;
+}
+.datetator_day {
+	text-align: center;
+	cursor: pointer;
+}
+.datetator_day:hover {
+	background-color: #eee;
+}
+.datetator_day.datetator_day_other {
+	color: #ddd;
+}
+.datetator_day.datetator_day_weekend {
+	background-color: #fee;
+}
+.datetator_day.datetator_day_weekend:hover {
+	background-color: #fdd;
+}
+.datetator_operations {
+	background-color: #f6f6f6;
+}
+.datetator_empty {
+	width: 33%;
+	display: inline-block;
+}
