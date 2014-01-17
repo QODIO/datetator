@@ -73,12 +73,14 @@
 		var $holder_element = null;
 		var $input_element = null;
 		var $picker_element = null;
-		var currentDate = null;
-		if (!isNaN(new Date($element.val()).getDate())) {
-			currentDate = new Date(new Date($element.val()).getFullYear(), new Date($element.val()).getMonth(), 1, 0, 0, 0);
-		} else {
-			currentDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0);
-		}
+		var reloadDate = function () {
+			if (!isNaN(new Date($element.val()).getDate())) {
+				return new Date(new Date($element.val()).getFullYear(), new Date($element.val()).getMonth(), 1, 0, 0, 0);
+			} else {
+				return new Date(new Date().getFullYear(), new Date().getMonth(), 1, 0, 0, 0);
+			}
+		};
+		var currentDate = reloadDate();
 		var key = {
 			backspace: 8,
 			enter: 13,
@@ -141,7 +143,10 @@
 
 			//// ================== BIND ELEMENTS EVENTS ================== ////
 			// source element
-			$element.change(refreshPicker);
+			$element.change(function () {
+				currentDate = reloadDate();
+				refreshPicker();
+			});
 			$input_element.mouseup(function (e) {
 				//console.log('mouseup');
 				e.preventDefault();
@@ -150,13 +155,7 @@
 			});
 			$input_element.focus(function (e) {
 				//console.log('focus');
-				if (!isNaN(new Date($element.val()).getDate())) {
-					currentDate.setYear(new Date($element.val()).getFullYear());
-					currentDate.setMonth(new Date($element.val()).getMonth());
-				} else {
-					currentDate.setYear(new Date().getFullYear());
-					currentDate.setMonth(new Date().getMonth());
-				}
+				currentDate = reloadDate();
 				refreshPicker();
 				//$input_element.select();
 			});
@@ -276,6 +275,9 @@
 						selectDate($(this).data('date'));
 					});
 					$td_element.addClass(plugin.settings.prefix + 'day');
+					if (formatDate(date, 0) == $element.val()) {
+						$td_element.addClass(plugin.settings.prefix + 'day_active');
+					}
 					if (date < firstDayOfMonth || date > lastDayOfMonth) {
 						$td_element.addClass(plugin.settings.prefix + 'day_other');
 					}
@@ -308,7 +310,7 @@
 				showPicker();
 			}
 		};
-
+		
 		var previousMonth = function () {
 			//console.log('previousMonth');
 			currentDate.setMonth(currentDate.getMonth() - 1);
