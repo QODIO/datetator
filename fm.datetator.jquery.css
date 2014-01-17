@@ -34,7 +34,7 @@
 
 .datetator_picker {
 	position: absolute;
-	width: 200px;
+	width: 240px;
 	background-color: rgba(255,0,0,.2);
 	z-index: 101;
 	color: #333;
@@ -98,22 +98,29 @@
 .datetator_week {
 	background-color: #eee;
 	text-align: center;
+	width: 30px;
 }
 .datetator_day {
 	text-align: center;
 	cursor: pointer;
+	width: 30px;
 }
 .datetator_day:hover {
 	background-color: #eee;
 }
 .datetator_day.datetator_day_other {
-	color: #ddd;
+	color: #bbb;
 }
 .datetator_day.datetator_day_weekend {
 	background-color: #fee;
 }
 .datetator_day.datetator_day_weekend:hover {
 	background-color: #fdd;
+}
+.datetator_day.datetator_day_active {
+	background-color: #9cf;
+	border-radius: 3px;
+	color: #fff;
 }
 .datetator_operations {
 	background-color: #f6f6f6;

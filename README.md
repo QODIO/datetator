@@ -80,7 +80,7 @@ datetator                     | This is the new input box. It has some extra cla
 `prefix_`week_header          | The table header cell containing the week title
 `prefix_`day_header           | The table header cell containing the day names
 `prefix_`week                 | The table cell containing week numbers
-`prefix_`day                  | The table cell containing the day dates. This element also contains the `prefix_`day_other class if dates are outside current month, and `prefix_`day_weekend for weekend dates.
+`prefix_`day                  | The table cell containing the day dates. This element contains the `prefix_`day_active class if it is the chosen date. This element can also contain the `prefix_`day_other class if dates are outside current month, and `prefix_`day_weekend for weekend dates.
 `prefix_`operations           | This is the holder for the bottom buttons 
 `prefix_`empty                | This class for the remove/delete/empty button
 

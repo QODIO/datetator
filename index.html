@@ -49,6 +49,11 @@
 			$('#activate_datetator2').trigger('click');
 			
 			$('#datetator_inputDatetator2').focus();
+			
+			setTimeout(function () {
+				$('#inputDatetator2').val('2016-05-09');
+				$('#inputDatetator2').trigger('change');
+			}, 3000);
 		});
 	</script>
 </head>
