@@ -57,9 +57,9 @@
 				    'novembur',
 				    'desembur'
 				],
-				previous: '«',
+				previous: '« {month}',
 				today: 'í dag',
-				next: '»',
+				next: '{month} »',
 				empty: 'Strika',
 				previousTooltip: 'Vís undanfarna mánað',
 				todayTooltip: 'Vís og vel dagin í dag',
@@ -167,6 +167,9 @@
 			refreshPicker();
 		};
 
+		var refresh = function () {
+			refreshPicker();
+		};
 		var refreshPicker = function () {
 			//console.log('refreshPicker');
 			$input_element.val(formatDate(new Date($element.val()), 2));
@@ -186,7 +189,7 @@
 			var $nav_prev_element = $(document.createElement('div'));
 			$nav_prev_element.addClass(plugin.settings.prefix + 'button');
 			$nav_prev_element.addClass(plugin.settings.prefix + 'previous');
-			$nav_prev_element.html(plugin.settings.labels.previous + ' ' + plugin.settings.labels.monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth()-1)).getMonth()].substring(0, 3));
+			$nav_prev_element.html(plugin.settings.labels.previous.replace('{month}', plugin.settings.labels.monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth()-1)).getMonth()].substring(0, 3)));
 			$nav_prev_element.attr('title', plugin.settings.labels.previousTooltip);
 			$nav_prev_element.click(function (e) {
 				e.preventDefault();
@@ -210,7 +213,7 @@
 			var $nav_next_element = $(document.createElement('div'));
 			$nav_next_element.addClass(plugin.settings.prefix + 'button');
 			$nav_next_element.addClass(plugin.settings.prefix + 'next');
-			$nav_next_element.html(plugin.settings.labels.monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth()+1)).getMonth()].substring(0, 3) + ' ' + plugin.settings.labels.next);
+			$nav_next_element.html(plugin.settings.labels.next.replace('{month}', plugin.settings.labels.monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth()+1)).getMonth()].substring(0, 3)));
 			$nav_next_element.attr('title', plugin.settings.labels.nextTooltip);
 			$nav_next_element.click(function (e) {
 				e.preventDefault();
