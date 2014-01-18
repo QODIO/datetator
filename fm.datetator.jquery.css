@@ -35,9 +35,11 @@
 .datetator_picker {
 	position: absolute;
 	width: 240px;
-	background-color: rgba(255,0,0,.2);
 	z-index: 101;
 	color: #333;
+	border: 1px solid #7f9db9;
+	border-radius: 3px;
+	background-color: #fff;
 }
 .datetator_holder.picker-visible {
 	position: relative;
@@ -52,17 +54,16 @@
 
 .datetator_button {
 	text-align: center;
-	background-color: #f6f6f6;
 	cursor: pointer;
 	padding: 3px;
 	box-sizing: border-box;
 }
 .datetator_button:hover {
-	background-color: #ddd;
+	background-color: #39f;
+	color: #fff;
 }
 
 .datetator_navigation {
-	background-color: #f6f6f6;
 }
 .datetator_previous {
 	width: 33%;
@@ -73,9 +74,10 @@
 	float: left;
 }
 .datetator_next {
+	width: 33%;
+	float: right;
 }
 .datetator_month {
-	background-color: #f6f6f6;
 	text-align: center;
 	padding: 3px;
 	font-weight: bold;
@@ -86,44 +88,44 @@
 	border-collapse: collapse;
 }
 .datetator_week_header {
-	background-color: #eee;
 	font-weight: normal;
 	text-align: center;
+	border-bottom: 1px solid #eee;
 }
 .datetator_day_header {
-	background-color: #eee;
 	font-weight: normal;
 	text-align: center;
+	border-bottom: 1px solid #eee;
 }
 .datetator_week {
-	background-color: #eee;
 	text-align: center;
 	width: 30px;
+	color: #999;
+	border-right: 1px solid #eee;
+	background-color: #f9f9f9;
 }
 .datetator_day {
 	text-align: center;
 	cursor: pointer;
 	width: 30px;
 }
-.datetator_day:hover {
-	background-color: #eee;
+.datetator_day.datetator_day_weekend {
+	color: #833;
 }
 .datetator_day.datetator_day_other {
 	color: #bbb;
-}
-.datetator_day.datetator_day_weekend {
-	background-color: #fee;
-}
-.datetator_day.datetator_day_weekend:hover {
-	background-color: #fdd;
 }
 .datetator_day.datetator_day_active {
 	background-color: #9cf;
 	border-radius: 3px;
 	color: #fff;
 }
+.datetator_day:hover {
+	background-color: #39f;
+	color: #fff;
+}
 .datetator_operations {
-	background-color: #f6f6f6;
+	border-top: 1px solid #ddd;
 }
 .datetator_empty {
 	width: 33%;

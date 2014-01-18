@@ -148,29 +148,25 @@
 				refreshPicker();
 			});
 			$input_element.mouseup(function (e) {
-				//console.log('mouseup');
 				e.preventDefault();
 				e.stopPropagation();
 				$input_element.trigger('focus');
 			});
 			$input_element.focus(function (e) {
-				//console.log('focus');
 				currentDate = reloadDate();
 				refreshPicker();
 				//$input_element.select();
 			});
 			$input_element.blur(function (e) {
-				//console.log('blur');
 				hidePicker();
 			});
 			refreshPicker();
 		};
 
-		var refresh = function () {
+		plugin.refresh = function () {
 			refreshPicker();
 		};
 		var refreshPicker = function () {
-			//console.log('refreshPicker');
 			$input_element.val(formatDate(new Date($element.val()), 2));
 
 			$picker_element.empty();
@@ -305,47 +301,42 @@
 			});
 			$operations_element.append($opr_delete_element);
 
-
 			if (document.activeElement === $input_element[0]) {
 				showPicker();
 			}
 		};
 		
 		var previousMonth = function () {
-			//console.log('previousMonth');
 			currentDate.setMonth(currentDate.getMonth() - 1);
 			refreshPicker();
 		};
 		
 		var today = function () {
-			//console.log('today');
 			currentDate.setYear(new Date().getFullYear());
 			currentDate.setMonth(new Date().getMonth());
 			$element.val(formatDate(new Date(), 0));
-			refreshPicker();
+			$element.trigger('change');
+			hidePicker();
 		};
 		
 		var nextMonth = function () {
-			//console.log('nextMonth');
 			currentDate.setMonth(currentDate.getMonth() + 1);
 			refreshPicker();
 		};
 		
 		var selectDate = function (date) {
-			//console.log('selectDate');
 			$element.val(formatDate(date, 0));
 			$element.trigger('change');
 			hidePicker();
 		};
 
 		var empty = function () {
-			//console.log('empty');
 			$element.val('');
-			refreshPicker();
+			$element.trigger('change');
+			hidePicker();
 		};
 
 		var showPicker = function () {
-			//console.log('showPicker');
 			$holder_element.removeClass('picker-hidden').addClass('picker-visible');
 			if (plugin.settings.useDimmer) {
 				$('#' + plugin.settings.prefix + 'dimmer').show();
@@ -353,7 +344,6 @@
 		};
 		
 		var hidePicker = function () {
-			//console.log('hidePicker');
 			$holder_element.removeClass('picker-visible').addClass('picker-hidden');
 			if (plugin.settings.useDimmer) {
 				$('#' + plugin.settings.prefix + 'dimmer').hide();
