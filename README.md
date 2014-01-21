@@ -125,11 +125,11 @@ $('#inputBox').datetator('destroy');
 
 Browser compatibility
 ---------------------
-* IE ???
-* Chrome 8+
-* Firefox ???
-* Safari ???
-* Opera ???
+* IE 9+
+* Chrome 3+
+* Firefox 3.6+
+* Safari 5+
+* Opera 10.5+
 
 
 
