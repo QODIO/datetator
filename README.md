@@ -23,7 +23,8 @@ $('#inputBox').datetator();
 $('#inputBox').datetator({
     prefix: 'datetator_',       // CSS class prefix
     height: 'auto',             // auto or element
-    useDimmer: false            // dims the screen when result list is visible
+    useDimmer: false,           // dims the screen when result list is visible
+	class: '',					// adds a custom class to the datator input element
 	labels: {					// contains all the labels for the plugin, 
 								// - this can be changed to other languages
 		week: 'Wk',
