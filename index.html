@@ -24,29 +24,33 @@
 	<script src="fm.datetator.jquery.js"></script>
 	<script>
 		$(function () {
-			$('#activate_datetator1').click(function () {
-				if ($('#inputDatetator1').data('datetator') === undefined) {
-					$('#inputDatetator1').datetator({
+			var $activate_datetator1 = $('#activate_datetator1');
+			var $inputDatetator1 = $('#inputDatetator1');
+			$activate_datetator1.click(function () {
+				if ($inputDatetator1.data('datetator') === undefined) {
+					$inputDatetator1.datetator({
 						useDimmer: true
 					});
-					$('#activate_datetator1').val('destroy datetator');
+					$activate_datetator1.val('destroy datetator');
 				} else {
-					$('#inputDatetator1').datetator('destroy');
-					$('#activate_datetator1').val('activate datetator');
+					$inputDatetator1.datetator('destroy');
+					$activate_datetator1.val('activate datetator');
 				}
 			});
-			$('#activate_datetator1').trigger('click');
+			$activate_datetator1.trigger('click');
 
-			$('#activate_datetator2').click(function () {
-				if ($('#inputDatetator2').data('datetator') === undefined) {
-					$('#inputDatetator2').datetator();
-					$('#activate_datetator2').val('destroy datetator');
+			var $activate_datetator2 = $('#activate_datetator2');
+			var $inputDatetator2 = $('#inputDatetator2');
+			$activate_datetator2.click(function () {
+				if ($inputDatetator2.data('datetator') === undefined) {
+					$inputDatetator2.datetator();
+					$activate_datetator2.val('destroy datetator');
 				} else {
-					$('#inputDatetator2').datetator('destroy');
-					$('#activate_datetator2').val('activate datetator');
+					$inputDatetator2.datetator('destroy');
+					$activate_datetator2.val('activate datetator');
 				}
 			});
-			$('#activate_datetator2').trigger('click');
+			$activate_datetator2.trigger('click');
 			
 			$('#datetator_inputDatetator2').focus();
 		});
@@ -57,12 +61,16 @@
 		<table>
 			<tr>
 				<td>
-					<b>Datetator (with dimmer):</b><br>
+					<label for="inputDatetator1">
+						<b>Datetator (with dimmer):</b>
+					</label><br>
 					<input id="inputDatetator1" name="inputDatetator1" value="">
-					<input value="activate datetator" id="activate_datetator1" type="button"><br>
+					<input value="activate datetator" id="activate_datetator1" type="button">
 				</td>
 				<td>
-					<b>Datetator:</b><br>
+					<label for="inputDatetator2">
+						<b>Datetator:</b>
+					</label><br>
 					<input id="inputDatetator2" name="inputDatetator2" value="2014-01-15">
 					<input value="activate datetator" id="activate_datetator2" type="button">
 				</td>
