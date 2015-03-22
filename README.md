@@ -24,39 +24,44 @@ $('#inputBox').datetator({
     prefix: 'datetator_',       // CSS class prefix
     height: 'auto',             // auto or element
     useDimmer: false            // dims the screen when result list is visible
-	labels: {					// contains all the labels for the plugin, this can be changed to other languages
-		week: 'Vk',
+	labels: {					// contains all the labels for the plugin, 
+								// - this can be changed to other languages
+		week: 'Wk',
 		dayNames: [
-			'Má',
-			'Tý',
-			'Mi',
-			'Hó',
+			'Mo',
+			'Tu',
+			'We',
+			'Th',
 			'Fr',
-			'Le',
+			'Sa',
 			'Su'
 		],
 		monthNames: [
-			'januar',
-			'februar',
-			'mars',
-			'apríl',
-			'mai',
-			'juni',
-			'juli',
-			'august',
-			'septembur',
-			'oktobur',
-			'novembur',
-			'desembur'
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
 		],
-		previous: '« {month}',
-		today: 'í dag',
-		next: '{month} »',
-		empty: 'Strika',
-		previousTooltip: 'Vís undanfarna mánað',
-		todayTooltip: 'Vís og vel dagin í dag',
-		nextTooltip: 'Vís næsta mánað',
-		emptyTooltip: 'Strika dagfesting'
+		previousMonth: '«',
+		nextMonth: '»',
+		previousYear: '«',
+		nextYear: '»',
+		empty: 'Remove',
+		today: 'Today',
+		previousMonthTooltip: 'Show previous month',
+		nextMonthTooltip: 'Show next month',
+		previousYearTooltip: 'Show previous year',
+		nextYearTooltip: 'Show next year',
+		emptyTooltip: 'Remove date',
+		todayTooltip: 'Show and choose today'
 });
 ```
 
@@ -70,12 +75,14 @@ Class                         | Description
 datetator                     | This is the new input box. It has some extra classes called `picker-visible` and `picker-hidden` which tell if the picker is visible or not.
 `prefix_`picker               | The holder for the picker popup.
 `prefix_`dimmer               | This is the dimmer
-`prefix_`navigation           | This is the top bar of the picker, containing previous, today and next buttons
+`prefix_`navigation           | This is the top bar of the picker, containing month, year and navigation buttons
 `prefix_`button               | This is a global class for all buttons
-`prefix_`previous             | This class for the previous button
-`prefix_`today                | This class for the today button
-`prefix_`next                 | This class fot the next button
-`prefix_`month                | This class is for the month display under the top navigation bar
+`prefix_`previous_month       | This class for the previous month button
+`prefix_`month                | This class is for the month display within the navigation bar
+`prefix_`next_month           | This class fot the next month button
+`prefix_`previous_year        | This class for the previous year button
+`prefix_`year                 | This class is for the year display within the navigation bar
+`prefix_`next_year            | This class fot the next year button
 `prefix_`calendar             | This is the holder for the calendar
 `prefix_`week_header          | The table header cell containing the week title
 `prefix_`day_header           | The table header cell containing the day names
@@ -83,6 +90,7 @@ datetator                     | This is the new input box. It has some extra cla
 `prefix_`day                  | The table cell containing the day dates. This element contains the `prefix_`day_active class if it is the chosen date. This element can also contain the `prefix_`day_other class if dates are outside current month, and `prefix_`day_weekend for weekend dates.
 `prefix_`operations           | This is the holder for the bottom buttons 
 `prefix_`empty                | This class for the remove/delete/empty button
+`prefix_`today                | This class for the today button
 
 
 DOM Structure
@@ -91,10 +99,12 @@ DOM Structure
 * datetator: *containing the `picker-visible`|`picker-hidden` class*
     * picker
         * navigation:
-        	* previous *containing the `button` class*
-        	* today *containing the `button` class*
-        	* next *containing the `button` class*
-        * month
+        	* previous_month *containing the `button` class*
+	        * month
+        	* next_month *containing the `button` class*
+        	* previous_year *containing the `button` class*
+	        * year
+        	* next_year *containing the `button` class*
         * calendar *this is a table element*
         	* tr
         		* th *first one is `week_header`, others are `day_header`*
@@ -103,6 +113,7 @@ DOM Structure
         	* tr...
         * operations
         	* empty *containing the `button` class*
+        	* today *containing the `button` class*
 
 
 jQuery methods

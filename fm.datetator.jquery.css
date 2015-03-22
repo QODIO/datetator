@@ -1,56 +1,60 @@
 /**
  * Datetator jQuery Plugin
  * A plugin to make input elements, date pickers
- * version 1.0, Jan 15th, 2014
+ * version 1.1, Jan 15th, 2014
  * by Ingi P. Jacobsen
  */
 
-/* reset */
+/* RESET */
 .datetator * {
-	box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	text-decoration: none;
 }
 
-/* dimmer */
+/* DIMMER */
 #datetator_dimmer {
-	background-color: rgba(0,0,0,.1);
+	background: rgba(0,0,0,.1);
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	z-index: 100;
 }
 
-/* Main box */
+/* MAIN ELEMENT */
 .datetator {
 	border: 1px solid #abadb3;
-	border-radius: 3px;
-	box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	display: inline-block;
 	text-decoration: none;
-	background: #fff url('calendar.png') no-repeat 99% 50%;
+	background: #fff url('calendar.png') no-repeat 97% 50%;
 	cursor: pointer;
 }
 
+/* GENERAL */
 .datetator_picker {
 	position: absolute;
 	width: 240px;
 	z-index: 101;
 	color: #333;
-	border: 1px solid #7f9db9;
-	border-radius: 3px;
-	background-color: #fff;
+	background: #fff;
+	overflow: hidden;
+	-webkit-box-shadow: 0 0 5px rgba(64, 64, 64, .1);
+	box-shadow: 0 0 8px rgba(64, 64, 64, .2);
+}
+.datetator_holder {
 }
 .datetator_holder.picker-visible {
 	position: relative;
 	z-index: 101;
+	-webkit-box-shadow: 0 0 5px #999;
+	box-shadow: 0 0 5px #999;
+	border-color: #aaa;
+	background-color: #f9f9f9;
+	outline: none;
 }
 .datetator_holder.picker-visible .datetator_picker {
 	display: block;
@@ -62,83 +66,155 @@
 .datetator_button {
 	text-align: center;
 	cursor: pointer;
-	padding: 3px;
-	box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+	padding: 5px 3px;
 	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .datetator_button:hover {
-	background-color: #39f;
+	background: #1973b7 !important;
 	color: #fff;
 }
 
+/* NAVIGATION */
 .datetator_navigation {
+	border-spacing: 0;
 }
-.datetator_previous {
-	width: 33%;
+.datetator_navigation:before,
+.datetator_navigation:after {
+	content: "";
+	display: table;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.datetator_navigation:after {
+	clear: both;
+}
+.datetator_previous_month {
+	width: 17%;
 	float: left;
-}
-.datetator_today {
-	width: 34%;
-	float: left;
-}
-.datetator_next {
-	width: 33%;
-	float: right;
 }
 .datetator_month {
-	text-align: center;
-	padding: 3px;
+	width: 66%;
+	float: left;
 	font-weight: bold;
+	text-align: center;
+	padding: 5px 3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+.datetator_next_month {
+	width: 17%;
+	float: right;
+}
+.datetator_previous_year {
+	clear: both;
+	width: 17%;
+	float: left;
+}
+.datetator_year {
+	width: 66%;
+	float: left;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px 3px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.datetator_next_year {
+	width: 17%;
+	float: right;
+}
+
+/* CALENDAR */
 .datetator_calendar {
 	width: 100%;
-	background-color: #fff;
+	background: #fff !important;
 	border-collapse: collapse;
+	border: 0;
+	margin: 5px 0 0 0;
 }
 .datetator_week_header {
-	font-weight: normal;
 	text-align: center;
 	border-bottom: 1px solid #eee;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1rem;
+	line-height: 1.5rem;
 }
 .datetator_day_header {
-	font-weight: normal;
 	text-align: center;
 	border-bottom: 1px solid #eee;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1rem;
+	line-height: 1.5rem;
 }
 .datetator_week {
 	text-align: center;
 	width: 30px;
 	color: #999;
 	border-right: 1px solid #eee;
-	background-color: #f9f9f9;
+	background: #f9f9f9 !important;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1rem;
+	line-height: 1.5rem;
 }
 .datetator_day {
 	text-align: center;
 	cursor: pointer;
 	width: 30px;
+	background: #fff !important;
+	padding: 0;
+	font-weight: normal;
+	font-size: 1rem;
+	line-height: 1.5rem;
 }
 .datetator_day.datetator_day_weekend {
-	color: #833;
+	color: #368;
 }
 .datetator_day.datetator_day_other {
 	color: #bbb;
 }
 .datetator_day.datetator_day_active {
-	background-color: #9cf;
-	border-radius: 3px;
+	background: #66bbff !important;
 	color: #fff;
 }
 .datetator_day:hover {
-	background-color: #39f;
+	background: #1973b7 !important;
 	color: #fff;
 }
+
+/* OPERATIONS */
 .datetator_operations {
 	border-top: 1px solid #ddd;
 }
+.datetator_operations {
+	border-spacing: 0;
+}
+.datetator_operations:before,
+.datetator_operations:after {
+	content: "";
+	display: table;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.datetator_operations:after {
+	clear: both;
+}
+
 .datetator_empty {
-	width: 33%;
-	display: inline-block;
+	float: left;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.datetator_today {
+	float: right;
+	padding-left: 16px;
+	padding-right: 16px;
 }
