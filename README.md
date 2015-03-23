@@ -62,7 +62,7 @@ $('#inputBox').datetator({
 		previousYearTooltip: 'Show previous year',
 		nextYearTooltip: 'Show next year',
 		emptyTooltip: 'Remove date',
-		todayTooltip: 'Show and choose today'
+		todayTooltip: 'Show and choose today\'s date'
 });
 ```
 
