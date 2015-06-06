@@ -1,6 +1,6 @@
 fo_labels: {
 	week: 'Vk',
-		dayNames: [
+	dayNames: [
 		'Má',
 		'Tý',
 		'Mi',
@@ -9,7 +9,7 @@ fo_labels: {
 		'Le',
 		'Su'
 	],
-		monthNames: [
+	monthNames: [
 		'januar',
 		'februar',
 		'mars',
@@ -23,12 +23,16 @@ fo_labels: {
 		'novembur',
 		'desembur'
 	],
-		previous: '« {month}',
-		today: 'í dag',
-		next: '{month} »',
-		empty: 'Strika',
-		previousTooltip: 'Vís undanfarna mánað',
-		todayTooltip: 'Vís og vel dagin í dag',
-		nextTooltip: 'Vís næsta mánað',
-		emptyTooltip: 'Strika dagfesting'
+	previousMonth: '«',
+	nextMonth: '»',
+	previousYear: '«',
+	nextYear: '»',
+	empty: 'Strika',
+	today: 'í dag',
+	previousMonthTooltip: 'Vís undanfarna mánað',
+	nextMonthTooltip: 'Vís næsta mánað',
+	previousYearTooltip: 'Vís undanfarna ár',
+	nextYearTooltip: 'Vís næsta ár',
+	emptyTooltip: 'Strika dagfesting',
+	todayTooltip: 'Vís og vel dagin í dag'
 }
