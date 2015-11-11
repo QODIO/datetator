@@ -284,7 +284,8 @@
 			var lastWeekAndYear = getWeekAndYear(lastDayOfMonth);
 			var mondayFirstWeek = getDateOfISOWeek(firstWeekAndYear.week, firstWeekAndYear.year);
 			var sundayLastWeek = getDateOfISOWeek(lastWeekAndYear.week, lastWeekAndYear.year, 6);
-			
+			var initDate = new Date();
+
 			var rows = Math.ceil((getDateDifferenceInDays(mondayFirstWeek, sundayLastWeek)) / 7);
 			for (var row = 0; row < rows; row++) {
 				// tr element
@@ -313,6 +314,9 @@
 					}
 					if (date.getDay() == 0 || date.getDay() == 6) {
 						$td_element.addClass(plugin.settings.prefix + 'day_weekend');
+					}
+					if (date.toDateString() == initDate.toDateString()) {
+						$td_element.addClass(plugin.settings.prefix + 'day_today');
 					}
 					$tr_element.append($td_element);
 				}
