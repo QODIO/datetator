@@ -1,4 +1,4 @@
-fo_labels: {
+var fo_labels = {
 	week: 'Vk',
 	dayNames: [
 		'Má',
