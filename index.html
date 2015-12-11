@@ -94,6 +94,11 @@
 		<label for="inputDatetator1">
 			<b>Datetator (with dimmer):</b>
 		</label><br>
+<pre>
+$('#inputDatetator1').datetator({
+	useDimmer: true
+});
+</pre>
 		<input id="inputDatetator1" name="inputDatetator1" value="">
 		<input value="activate datetator" id="activate_datetator1" type="button"><br>
 		<br>
@@ -102,6 +107,9 @@
 		<label for="inputDatetator2">
 			<b>Datetator:</b>
 		</label><br>
+<pre>
+$('#inputDatetator2').datetator();
+</pre>
 		<input id="inputDatetator2" name="inputDatetator2" value="2014-01-15">
 		<input value="activate datetator" id="activate_datetator2" type="button"><br>
 		<br>
@@ -110,6 +118,11 @@
 		<label for="inputDatetator3">
 			<b>Datetator (German):</b>
 		</label><br>
+<pre>
+$('#inputDatetator3').datetator({
+	language: 'de'
+});
+</pre>
 		<input id="inputDatetator3" name="inputDatetator3" value="2014-01-15">
 		<input value="activate datetator" id="activate_datetator3" type="button"><br>
 		<br>
@@ -118,6 +131,11 @@
 		<label for="inputDatetator4">
 			<b>Datetator (Faroese):</b>
 		</label><br>
+<pre>
+$('#inputDatetator4').datetator({
+	language: 'fo'
+});
+</pre>
 		<input id="inputDatetator4" name="inputDatetator4" value="2014-01-15">
 		<input value="activate datetator" id="activate_datetator4" type="button"><br>
 		<br>
@@ -126,6 +144,9 @@
 		<label for="inputDatetator5">
 			<b>Datetator (using markup):</b>
 		</label><br>
+<pre>
+&lt;input id=&quot;inputDatetator5&quot; type=&quot;text&quot; class=&quot;datetator&quot; data-datetator-use-dimmer=&quot;true&quot; data-datetator-use-remove=&quot;false&quot; value=&quot;2014-01-15&quot;&gt;
+</pre>
 		<input id="inputDatetator5" type="text" class="datetator" data-datetator-use-dimmer="true" data-datetator-use-remove="false" value="2014-01-15">
 		<br>
 		<br>
