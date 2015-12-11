@@ -14,7 +14,10 @@
 			padding: 15px;
 		}
 		#inputDatetator1,
-		#inputDatetator2 {
+		#inputDatetator2,
+		#inputDatetator3,
+		#inputDatetator4,
+		#inputDatetator5 {
 			width: 300px;
 			padding: 8px 16px;
 			box-sizing: border-box;
@@ -22,6 +25,8 @@
 	</style>
 	<script src="jquery-1.11.0.min.js"></script>
 	<script src="fm.datetator.jquery.js"></script>
+	<script src="fm.datetator-fo.jquery.js"></script>
+	<script src="fm.datetator-de.jquery.js"></script>
 	<script>
 		$(function () {
 			var $activate_datetator1 = $('#activate_datetator1');
@@ -51,29 +56,79 @@
 				}
 			});
 			$activate_datetator2.trigger('click');
+
+			var $activate_datetator3 = $('#activate_datetator3');
+			var $inputDatetator3 = $('#inputDatetator3');
+			$activate_datetator3.click(function () {
+				if ($inputDatetator3.data('datetator') === undefined) {
+					$inputDatetator3.datetator({
+						language: 'de'
+					});
+					$activate_datetator3.val('destroy datetator');
+				} else {
+					$inputDatetator3.datetator('destroy');
+					$activate_datetator3.val('activate datetator');
+				}
+			});
+			$activate_datetator3.trigger('click');
+
+			var $activate_datetator4 = $('#activate_datetator4');
+			var $inputDatetator4 = $('#inputDatetator4');
+			$activate_datetator4.click(function () {
+				if ($inputDatetator4.data('datetator') === undefined) {
+					$inputDatetator4.datetator({
+						language: 'fo'
+					});
+					$activate_datetator4.val('destroy datetator');
+				} else {
+					$inputDatetator4.datetator('destroy');
+					$activate_datetator4.val('activate datetator');
+				}
+			});
+			$activate_datetator4.trigger('click');
 		});
 	</script>
 </head>
 <body>
 	<div id="wrapper">
-		<table>
-			<tr>
-				<td>
-					<label for="inputDatetator1">
-						<b>Datetator (with dimmer):</b>
-					</label><br>
-					<input id="inputDatetator1" name="inputDatetator1" value="">
-					<input value="activate datetator" id="activate_datetator1" type="button">
-				</td>
-				<td>
-					<label for="inputDatetator2">
-						<b>Datetator:</b>
-					</label><br>
-					<input id="inputDatetator2" name="inputDatetator2" value="2014-01-15">
-					<input value="activate datetator" id="activate_datetator2" type="button">
-				</td>
-			</tr>
-		</table>
+		<label for="inputDatetator1">
+			<b>Datetator (with dimmer):</b>
+		</label><br>
+		<input id="inputDatetator1" name="inputDatetator1" value="">
+		<input value="activate datetator" id="activate_datetator1" type="button"><br>
+		<br>
+		<br>
+
+		<label for="inputDatetator2">
+			<b>Datetator:</b>
+		</label><br>
+		<input id="inputDatetator2" name="inputDatetator2" value="2014-01-15">
+		<input value="activate datetator" id="activate_datetator2" type="button"><br>
+		<br>
+		<br>
+
+		<label for="inputDatetator3">
+			<b>Datetator (German):</b>
+		</label><br>
+		<input id="inputDatetator3" name="inputDatetator3" value="2014-01-15">
+		<input value="activate datetator" id="activate_datetator3" type="button"><br>
+		<br>
+		<br>
+
+		<label for="inputDatetator4">
+			<b>Datetator (Faroese):</b>
+		</label><br>
+		<input id="inputDatetator4" name="inputDatetator4" value="2014-01-15">
+		<input value="activate datetator" id="activate_datetator4" type="button"><br>
+		<br>
+		<br>
+
+		<label for="inputDatetator5">
+			<b>Datetator (using markup):</b>
+		</label><br>
+		<input id="inputDatetator5" type="text" class="datetator" data-datetator-use-dimmer="true" data-datetator-use-remove="false" value="2014-01-15">
+		<br>
+		<br>
 	</div>
 
 </body>

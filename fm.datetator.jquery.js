@@ -1,7 +1,7 @@
 /*
  Datetator jQuery Plugin
  Datetator is a jQuery-based replacement for input boxes, making them date pickers.
- version 1.0, Jan 13th, 2014
+ version 1.1, Dec 11th, 2015
  by Ingi P. Jacobsen
 
  The MIT License (MIT)
@@ -38,44 +38,48 @@
 			prefix: 'datetator_',
 			height: 'auto',
 			useDimmer: false,
+			useRemove: true,
 			class: '',
+			language: 'en',
 			labels: {
-				week: 'Wk',
-				dayNames: [
-					'Mo',
-					'Tu',
-					'We',
-					'Th',
-					'Fr',
-					'Sa',
-					'Su'
-				],
-				monthNames: [
-					'January',
-				    'February',
-				    'March',
-				    'April',
-				    'May',
-				    'June',
-				    'July',
-				    'August',
-				    'September',
-				    'October',
-				    'November',
-				    'December'
-				],
-				previousMonth: '«',
-				nextMonth: '»',
-				previousYear: '«',
-				nextYear: '»',
-				empty: 'Remove',
-				today: 'Today',
-				previousMonthTooltip: 'Show previous month',
-				nextMonthTooltip: 'Show next month',
-				previousYearTooltip: 'Show previous year',
-				nextYearTooltip: 'Show next year',
-				emptyTooltip: 'Remove date',
-				todayTooltip: 'Show and choose today\'s date'
+				en: {
+					week: 'Wk',
+					dayNames: [
+						'Mo',
+						'Tu',
+						'We',
+						'Th',
+						'Fr',
+						'Sa',
+						'Su'
+					],
+					monthNames: [
+						'January',
+					    'February',
+					    'March',
+					    'April',
+					    'May',
+					    'June',
+					    'July',
+					    'August',
+					    'September',
+					    'October',
+					    'November',
+					    'December'
+					],
+					previousMonth: '«',
+					nextMonth: '»',
+					previousYear: '«',
+					nextYear: '»',
+					empty: 'Remove',
+					today: 'Today',
+					previousMonthTooltip: 'Show previous month',
+					nextMonthTooltip: 'Show next month',
+					previousYearTooltip: 'Show previous year',
+					nextYearTooltip: 'Show next year',
+					emptyTooltip: 'Remove date',
+					todayTooltip: 'Show and choose today\'s date'
+				}
 			}
 		};
 
@@ -93,6 +97,7 @@
 			}
 		};
 		var currentDate = reloadDate();
+		/* For use later when adding support for keyboard
 		var key = {
 			backspace: 8,
 			enter: 13,
@@ -101,13 +106,16 @@
 			up: 38,
 			right: 39,
 			down: 40
-		};
+		};*/
 		plugin.settings = {};
 
 
 
 		//// ================== "INITIALIZE PLUGIN" METHOD ================== ////
 		plugin.init = function () {
+			if (typeof datetator_labels !== 'undefined') {
+				$.extend(defaults.labels, datetator_labels);
+			}
 			plugin.settings = $.extend({}, defaults, options);
 
 			//// CREATE ELEMENTS
@@ -122,7 +130,7 @@
 			}
 			// holder element
 			$holder_element = $(document.createElement('div'));
-			$holder_element.addClass('datetator_holder picker-hidden');
+			$holder_element.addClass(plugin.settings.prefix + 'holder picker-hidden');
 			$holder_element.css({
 				display: $element.css('display')
 			});
@@ -133,7 +141,7 @@
 			if (element.id !== undefined) {
 				$input_element.attr('id', plugin.settings.prefix + element.id);
 			}
-			$input_element.addClass('datetator picker-hidden ' + plugin.settings.class);
+			$input_element.addClass(plugin.settings.prefix + 'element picker-hidden ' + plugin.settings.class);
 			$input_element.css({
 				width: $element.css('width'),
 				padding: $element.css('padding'),
@@ -155,11 +163,11 @@
 
 			//// BIND ELEMENTS EVENTS
 			// source element
-			$element.change(function () {
+			$element.bind('change', function () {
 				currentDate = reloadDate();
 				refreshPicker();
 			});
-			$input_element.mouseup(function (e) {
+			$input_element.bind('mouseup', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				$input_element.trigger('focus');
@@ -177,6 +185,9 @@
 
 		
 		//// ================== "REFRESH PICKER" METHOD ================== ////
+		plugin.changeSetting = function (settingToChange, change) {
+			plugin.settings['settingToChange'] = change;
+		};
 		plugin.refresh = function () {
 			refreshPicker();
 		};
@@ -185,7 +196,7 @@
 
 			$picker_element.empty();
 			$picker_element.css('top', $input_element.outerHeight() + 3);
-			$picker_element.mousedown(function (e) {
+			$picker_element.bind('mousedown', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 			});
@@ -200,9 +211,9 @@
 			var $nav_prev_month_element = $(document.createElement('div'));
 			$nav_prev_month_element.addClass(plugin.settings.prefix + 'button');
 			$nav_prev_month_element.addClass(plugin.settings.prefix + 'previous_month');
-			$nav_prev_month_element.html(plugin.settings.labels.previousMonth.replace('{month}', plugin.settings.labels.monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth() - 1)).getMonth()].substring(0, 3)));
-			$nav_prev_month_element.attr('title', plugin.settings.labels.previousMonthTooltip);
-			$nav_prev_month_element.click(function (e) {
+			$nav_prev_month_element.html(plugin.settings.labels[plugin.settings.language].previousMonth.replace('{month}', plugin.settings.labels[plugin.settings.language].monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth() - 1)).getMonth()].substring(0, 3)));
+			$nav_prev_month_element.attr('title', plugin.settings.labels[plugin.settings.language].previousMonthTooltip);
+			$nav_prev_month_element.bind('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				previousMonth();
@@ -211,15 +222,15 @@
 			// month holder
 			var $nav_month_element = $(document.createElement('div'));
 			$nav_month_element.addClass(plugin.settings.prefix + 'month');
-			$nav_month_element.html(plugin.settings.labels.monthNames[currentDate.getMonth()]);
+			$nav_month_element.html(plugin.settings.labels[plugin.settings.language].monthNames[currentDate.getMonth()]);
 			$nav_element.append($nav_month_element);
 			// next month button
 			var $nav_next_month_element = $(document.createElement('div'));
 			$nav_next_month_element.addClass(plugin.settings.prefix + 'button');
 			$nav_next_month_element.addClass(plugin.settings.prefix + 'next_month');
-			$nav_next_month_element.html(plugin.settings.labels.nextMonth.replace('{month}', plugin.settings.labels.monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth() + 1)).getMonth()].substring(0, 3)));
-			$nav_next_month_element.attr('title', plugin.settings.labels.nextMonthTooltip);
-			$nav_next_month_element.click(function (e) {
+			$nav_next_month_element.html(plugin.settings.labels[plugin.settings.language].nextMonth.replace('{month}', plugin.settings.labels[plugin.settings.language].monthNames[new Date(new Date(currentDate).setMonth(currentDate.getMonth() + 1)).getMonth()].substring(0, 3)));
+			$nav_next_month_element.attr('title', plugin.settings.labels[plugin.settings.language].nextMonthTooltip);
+			$nav_next_month_element.bind('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				nextMonth();
@@ -231,9 +242,9 @@
 			var $nav_prev_year_element = $(document.createElement('div'));
 			$nav_prev_year_element.addClass(plugin.settings.prefix + 'button');
 			$nav_prev_year_element.addClass(plugin.settings.prefix + 'previous_year');
-			$nav_prev_year_element.html(plugin.settings.labels.previousYear.replace('{year}', new Date(new Date(currentDate).setYear(currentDate.getFullYear() - 1)).getFullYear().toString()));
-			$nav_prev_year_element.attr('title', plugin.settings.labels.previousYearTooltip);
-			$nav_prev_year_element.click(function (e) {
+			$nav_prev_year_element.html(plugin.settings.labels[plugin.settings.language].previousYear.replace('{year}', new Date(new Date(currentDate).setYear(currentDate.getFullYear() - 1)).getFullYear().toString()));
+			$nav_prev_year_element.attr('title', plugin.settings.labels[plugin.settings.language].previousYearTooltip);
+			$nav_prev_year_element.bind('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				previousYear();
@@ -248,9 +259,9 @@
 			var $nav_next_year_element = $(document.createElement('div'));
 			$nav_next_year_element.addClass(plugin.settings.prefix + 'button');
 			$nav_next_year_element.addClass(plugin.settings.prefix + 'next_year');
-			$nav_next_year_element.html(plugin.settings.labels.nextYear.replace('{year}', new Date(new Date(currentDate).setYear(currentDate.getFullYear() + 1)).getFullYear().toString()));
-			$nav_next_year_element.attr('title', plugin.settings.labels.nextYearTooltip);
-			$nav_next_year_element.click(function (e) {
+			$nav_next_year_element.html(plugin.settings.labels[plugin.settings.language].nextYear.replace('{year}', new Date(new Date(currentDate).setYear(currentDate.getFullYear() + 1)).getFullYear().toString()));
+			$nav_next_year_element.attr('title', plugin.settings.labels[plugin.settings.language].nextYearTooltip);
+			$nav_next_year_element.bind('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				nextYear();
@@ -267,13 +278,13 @@
 			// td element (week header)
 			var $calendar_td_element = $(document.createElement('th'));
 			$calendar_td_element.addClass(plugin.settings.prefix + 'week_header');
-			$calendar_td_element.html(plugin.settings.labels.week);
+			$calendar_td_element.html(plugin.settings.labels[plugin.settings.language].week);
 			$calendar_tr_element.append($calendar_td_element);
 			for (var i = 0; i < 7; i++) {
 				// td element (day header)
 				$calendar_td_element = $(document.createElement('th'));
 				$calendar_td_element.addClass(plugin.settings.prefix + 'day_header');
-				$calendar_td_element.html(plugin.settings.labels.dayNames[i]);
+				$calendar_td_element.html(plugin.settings.labels[plugin.settings.language].dayNames[i]);
 				$calendar_tr_element.append($calendar_td_element);
 			}
 
@@ -302,7 +313,7 @@
 					var date = new Date(mondayFirstWeek.getFullYear(), mondayFirstWeek.getMonth(), mondayFirstWeek.getDate() + (x + (row * 7)));
 					$td_element.html(date.getDate());
 					$td_element.data('date', date);
-					$td_element.click(function () {
+					$td_element.bind('click', function () {
 						selectDate($(this).data('date'));
 					});
 					$td_element.addClass(plugin.settings.prefix + 'day');
@@ -327,24 +338,26 @@
 			$operations_element.addClass(plugin.settings.prefix + 'operations');
 			$picker_element.append($operations_element);
 			// "remove" button
-			var $opr_delete_element = $(document.createElement('div'));
-			$opr_delete_element.addClass(plugin.settings.prefix + 'button');
-			$opr_delete_element.addClass(plugin.settings.prefix + 'empty');
-			$opr_delete_element.html(plugin.settings.labels.empty);
-			$opr_delete_element.attr('title', plugin.settings.labels.emptyTooltip);
-			$opr_delete_element.click(function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-				empty();
-			});
-			$operations_element.append($opr_delete_element);
+			if (plugin.settings.useRemove) {
+				var $opr_delete_element = $(document.createElement('div'));
+				$opr_delete_element.addClass(plugin.settings.prefix + 'button');
+				$opr_delete_element.addClass(plugin.settings.prefix + 'empty');
+				$opr_delete_element.html(plugin.settings.labels[plugin.settings.language].empty);
+				$opr_delete_element.attr('title', plugin.settings.labels[plugin.settings.language].emptyTooltip);
+				$opr_delete_element.bind('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					empty();
+				});
+				$operations_element.append($opr_delete_element);
+			}
 			// "today" button
 			var $opr_today_element = $(document.createElement('div'));
 			$opr_today_element.addClass(plugin.settings.prefix + 'button');
 			$opr_today_element.addClass(plugin.settings.prefix + 'today');
-			$opr_today_element.html(plugin.settings.labels.today);
-			$opr_today_element.attr('title', plugin.settings.labels.todayTooltip);
-			$opr_today_element.click(function (e) {
+			$opr_today_element.html(plugin.settings.labels[plugin.settings.language].today);
+			$opr_today_element.attr('title', plugin.settings.labels[plugin.settings.language].todayTooltip);
+			$opr_today_element.bind('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				today();
@@ -429,10 +442,10 @@
 					return (day > 9 ? day : '0' + day) + '-' + (month > 9 ? month : '0' + month) + '-' + year;
 					break;
 				case 2:
-					return day + '. ' + plugin.settings.labels.monthNames[month - 1] + ' ' + year;
+					return day + '. ' + plugin.settings.labels[plugin.settings.language].monthNames[month - 1] + ' ' + year;
 					break;
 				case 3:
-					return day + '. ' + plugin.settings.labels.monthNames[month - 1].substring(0, 3) + '. ' + year;
+					return day + '. ' + plugin.settings.labels[plugin.settings.language].monthNames[month - 1].substring(0, 3) + '. ' + year;
 					break;
 			}
 			return 'Invalid Type';
@@ -484,7 +497,7 @@
 		options = options !== undefined ? options : {};
 		return this.each(function () {
 			if (typeof(options) === 'object') {
-				if (undefined === $(this).data('datetator')) {
+				if ($(this).data('datetator') === undefined) {
 					var plugin = new $.datetator(this, options);
 					$(this).data('datetator', plugin);
 				}
@@ -497,3 +510,16 @@
 	};
 
 }(jQuery));
+
+$(function () {
+	$('.datetator').each(function () {
+		var $this = $(this);
+		var options = {};
+		$.each($this.data(), function (key, value) {
+			if (key.substring(0, 9) == 'datetator') {
+				options[key.substring(9, 10).toLowerCase() + key.substring(10)] = value;
+			}
+		});
+		$this.datetator(options);
+	});
+});

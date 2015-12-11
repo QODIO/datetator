@@ -6,7 +6,7 @@
  */
 
 /* RESET */
-.datetator * {
+.datetator_element * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -23,7 +23,7 @@
 }
 
 /* MAIN ELEMENT */
-.datetator {
+.datetator_element {
 	border: 1px solid #abadb3;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

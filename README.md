@@ -10,6 +10,7 @@ Usage
 ```html
 <link rel="stylesheet" href="fm.datetator.jquery.css"/>
 <script src="jquery-1.11.0.min.js"></script>
+<script src="fm.datetator-de.jquery.js"></script> <!-- Optional translations here -->
 <script src="fm.datetator.jquery.js"></script>
 ```
 
@@ -17,52 +18,61 @@ Usage
 ```javascript
 $('#inputBox').datetator();
 ```
+If you don't wan't to meddle with scripting, there is an alternative to activate replacement, by using inline markup. 
+```html
+<input type="text" class="datetator" data-datetator-use-dimmer="true" data-datetator-use-remove="false">
+```
 
 ###### if you want to change settings:
 ```javascript
 $('#inputBox').datetator({
     prefix: 'datetator_',       // CSS class prefix
-    height: 'auto',             // auto or element
-    useDimmer: false,           // dims the screen when result list is visible
-	class: '',					// adds a custom class to the datator input element
-	labels: {					// contains all the labels for the plugin, 
-								// - this can be changed to other languages
-		week: 'Wk',
-		dayNames: [
-			'Mo',
-			'Tu',
-			'We',
-			'Th',
-			'Fr',
-			'Sa',
-			'Su'
-		],
-		monthNames: [
-			'January',
-			'February',
-			'March',
-			'April',
-			'May',
-			'June',
-			'July',
-			'August',
-			'September',
-			'October',
-			'November',
-			'December'
-		],
-		previousMonth: '«',
-		nextMonth: '»',
-		previousYear: '«',
-		nextYear: '»',
-		empty: 'Remove',
-		today: 'Today',
-		previousMonthTooltip: 'Show previous month',
-		nextMonthTooltip: 'Show next month',
-		previousYearTooltip: 'Show previous year',
-		nextYearTooltip: 'Show next year',
-		emptyTooltip: 'Remove date',
-		todayTooltip: 'Show and choose today\'s date'
+    height: 'auto',             // Auto or element
+    useDimmer: false,           // Dims the screen when result list is visible
+    useRemove: true,            // Determines if the 'remove' button should be visible
+    class: '',                  // Adds a custom class to the datator input element
+    language: 'en',             // The language to be used
+    labels: {                   // Contains all the labels for the plugin, 
+                                // - this can be changed to other languages (or use tranlation files)
+        en: {
+            week: 'Wk',
+            dayNames: [
+                'Mo',
+                'Tu',
+                'We',
+                'Th',
+                'Fr',
+                'Sa',
+                'Su'
+            ],
+            monthNames: [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ],
+            previousMonth: '«',
+            nextMonth: '»',
+            previousYear: '«',
+            nextYear: '»',
+            empty: 'Remove',
+            today: 'Today',
+            previousMonthTooltip: 'Show previous month',
+            nextMonthTooltip: 'Show next month',
+            previousYearTooltip: 'Show previous year',
+            nextYearTooltip: 'Show next year',
+            emptyTooltip: 'Remove date',
+            todayTooltip: 'Show and choose today\'s date'
+        }
+    }
 });
 ```
 
@@ -73,7 +83,7 @@ Here is a list of all the css classes
 
 Class                         | Description
 ----------------------------- | ------------------------------------------------------------------------------
-datetator                     | This is the new input box. It has some extra classes called `picker-visible` and `picker-hidden` which tell if the picker is visible or not.
+`prefix_`element              | This is the new input box. It has some extra classes called `picker-visible` and `picker-hidden` which tell if the picker is visible or not.
 `prefix_`picker               | The holder for the picker popup.
 `prefix_`dimmer               | This is the dimmer
 `prefix_`navigation           | This is the top bar of the picker, containing month, year and navigation buttons
@@ -97,24 +107,24 @@ datetator                     | This is the new input box. It has some extra cla
 DOM Structure
 -------------
 * dimmer
-* datetator: *containing the `picker-visible`|`picker-hidden` class*
+* element: *containing the `picker-visible`|`picker-hidden` class*
     * picker
         * navigation:
-        	* previous_month *containing the `button` class*
-	        * month
-        	* next_month *containing the `button` class*
-        	* previous_year *containing the `button` class*
-	        * year
-        	* next_year *containing the `button` class*
+            * previous_month *containing the `button` class*
+            * month
+            * next_month *containing the `button` class*
+            * previous_year *containing the `button` class*
+            * year
+            * next_year *containing the `button` class*
         * calendar *this is a table element*
-        	* tr
-        		* th *first one is `week_header`, others are `day_header`*
-        	* tr
-        		* td *first one is `week`, others are `day`*
-        	* tr...
+            * tr
+                * th *first one is `week_header`, others are `day_header`*
+            * tr
+                * td *first one is `week`, others are `day`*
+            * tr...
         * operations
-        	* empty *containing the `button` class*
-        	* today *containing the `button` class*
+            * empty *containing the `button` class*
+            * today *containing the `button` class*
 
 
 jQuery methods
@@ -133,6 +143,11 @@ or
 ```javascript
 $('#inputBox').datetator('destroy');
 ```
+
+
+Translations
+---------------------
+It's very easy to make your own translations. Make a copy of the file `fm.datetator-en.jquery.js`, substitute `en` with your own country code, change the translations inside said file, and then include the script before you include `fm.datetator.jquery.js`, but after you include the jQuery library (as shown in the usage section).
 
 
 Browser compatibility

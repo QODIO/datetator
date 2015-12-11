@@ -1,5 +1,8 @@
-var de_labels = {
-	labels: {
+/*
+ German translation (thanks to Roland Hentschel)
+*/
+var datetator_labels = $.extend({}, typeof datetator_labels !== 'undefined' ? datetator_labels : {}, {
+	de: {
 		week: 'Wo',
 		dayNames: [
 			'Mo',
@@ -37,4 +40,4 @@ var de_labels = {
 		emptyTooltip: 'Entferne Eintrag',
 		todayTooltip: 'Zeige und wähle heutiges Datum'
 	}
-}
+});
