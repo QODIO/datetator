@@ -1,7 +1,7 @@
 Datetator
 ==========
 Datetator is a jQuery-based replacement for input boxes, making them date pickers. It affects the original input box directly, which is used as the data container.
-[You can see a demo here](http://opensource.faroemedia.com/datetator).
+[You can see a demo here](http://opensource.qodio.com/datetator).
 
 
 Usage
@@ -164,7 +164,7 @@ Copyright and license
 ---------------------
 The MIT License (MIT)
 
-Copyright (c) 2014 Faroe Media
+Copyright (c) 2014 Qodio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
