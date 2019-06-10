@@ -1,5 +1,5 @@
 /*
- English translation by Ingi P. Jacobsen
+ English translation by Ingi á Steinamørk
 
  This file isn't really used, as the english translation has been
  hardcoded into the plugin. But you want to change the english 

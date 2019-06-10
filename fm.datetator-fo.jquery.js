@@ -1,5 +1,5 @@
 /*
- Faroese translation by Ingi P. Jacobsen
+ Faroese translation by Ingi á Steinamørk
 */
 var datetator_labels = $.extend({}, typeof datetator_labels !== 'undefined' ? datetator_labels : {}, {
 	fo: {

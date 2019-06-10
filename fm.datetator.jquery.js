@@ -2,7 +2,7 @@
  Datetator jQuery Plugin
  Datetator is a jQuery-based replacement for input boxes, making them date pickers.
  version 1.1, Dec 11th, 2015
- by Ingi P. Jacobsen
+ by Ingi á Steinamørk
 
  The MIT License (MIT)
 
