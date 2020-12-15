@@ -1,3 +1,6 @@
+DEPRECATED - no longer actively maintained
+==========================================
+
 Datetator
 ==========
 Datetator is a jQuery-based replacement for input boxes, making them date pickers. It affects the original input box directly, which is used as the data container.
